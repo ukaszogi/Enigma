@@ -1,3 +1,6 @@
+#WERSJA DEV SAMO KODOWANIE
+
+
 alfabet = {
     "a": 0,
     "b": 1,
