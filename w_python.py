@@ -1,6 +1,9 @@
 #WERSJA DEV SAMO KODOWANIE
 
 
+def devl():
+    print("dev")
+
 alfabet = {
     "a": 0,
     "b": 1,
@@ -114,7 +117,11 @@ while(r):
         if(k in "1234567890ąćęłńóśźż"):
             print("Bez cyfr i polskich znaków")
             r = True 
-    
+ 
+if(tekst == "start dev"):
+    devl()
+
+
 wynik = ""
 
 for l in range(len(tekst)):
