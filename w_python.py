@@ -1,9 +1,3 @@
-#WERSJA DEV SAMO KODOWANIE
-
-
-def devl():
-    print("dev")
-
 alfabet = {
     "a": 0,
     "b": 1,
@@ -71,88 +65,93 @@ rotor = [
 [21, 20, 25, 2 , 10, 3 , 6 , 14, 16, 17, 4 , 9 , 5 , 1 , 24, 12, 23, 22, 19, 8 , 18, 7 , 11, 13, 15, 0 ]
 ]
 
-q = True
-try:
-    while(q):
-        q = False
-        for i in range(3):
+def verdev():
+    q = True
+    try:
+        while(q):
+            q = False
+            for i in range(3):
+                p = True
+                while(p):
+                    wybór[i] = (int(input("Podaj numer "+str(i+1)+". rotora: ")) - 1)
+                    if(0 <= wybór[i] <= 4):
+                        p = False
+                    else:
+                        print("Numery rotorów to: 1, 2, 3, 4, 5")
+                    if(i>0):
+                        if(wybór[i]==wybór[i-1]):
+                            print("Podaj inny numer rotora (rotory nie mogą się powtarzać): ")
+                            p = True
+                    if(i>1):
+                        if(wybór[i]==wybór[i-2]):
+                            print("Podaj inny numer rotora (rotory nie mogą się powtarzać): ")
+                            p = True
+        for j in range(3):
+            j+=3
             p = True
             while(p):
-                wybór[i] = (int(input("Podaj numer "+str(i+1)+". rotora: ")) - 1)
-                if(0 <= wybór[i] <= 4):
+                wybór[j] = str(input("Podaj literę "+str(j-3)+". rotora: ").lower())
+                if(len(wybór[j])==1):
                     p = False
                 else:
-                    print("Numery rotorów to: 1, 2, 3, 4, 5")
-                if(i>0):
-                    if(wybór[i]==wybór[i-1]):
-                        print("Podaj inny numer rotora (rotory nie mogą się powtarzać): ")
-                        p = True
-                if(i>1):
-                    if(wybór[i]==wybór[i-2]):
-                        print("Podaj inny numer rotora (rotory nie mogą się powtarzać): ")
-                        p = True
-    for j in range(3):
-        j+=3
-        p = True
-        while(p):
-            wybór[j] = str(input("Podaj literę "+str(j-3)+". rotora: ").lower())
-            if(len(wybór[j])==1):
-                p = False
+                    print("Podaj jedną literę")
+
+    except ValueError:
+        print("Niewłaściwy rodzaj znaku!")
+        q = True
+
+    for h in range(3):
+        wybór[h+3] = int(alfabet.get(wybór[h+3]))
+        print(wybór[h+3])
+
+    r = True
+    while(r):
+        r = False
+        tekst = str(input("Podaj tekst do szyfrowania. Bez znaków polskich i cyfr. \n\n\n").lower())
+        for k in tekst:
+            if(k in "1234567890ąćęłńóśźż"):
+                print("Bez cyfr i polskich znaków")
+                r = True 
+
+    if(tekst == "start dev"):
+        devl()
+
+
+    wynik = ""
+
+    for l in range(len(tekst)):
+        r_0_in = (alfabet.get(tekst[l])+wybór[3])%26
+        print(r_0_in)
+        r_0_w = numery.get(rotor[wybór[0]][r_0_in])
+        print(r_0_w)
+        r_1_in = (alfabet.get(r_0_w) +wybór[4])%26
+        print(r_1_in)
+        r_1_w = numery.get(rotor[wybór[1]][r_1_in])
+        print(r_1_w)
+        r_2_in = (alfabet.get(r_1_w) +wybór[5])%26
+        print(r_2_in)
+        r_2_w = numery.get(rotor[wybór[2]][r_2_in])
+        print(r_2_w)
+        wynik += r_2_w
+        print(wynik)
+        if(wybór[3]==25):
+            wybór[3]=0
+            if(wybór[4]==25):
+                wybór[4]=0
+                if(wybór[5]==25):
+                    wybór[5]=0
+                else:
+                    wybór[5]+=1
             else:
-                print("Podaj jedną literę")
-
-except ValueError:
-    print("Niewłaściwy rodzaj znaku!")
-    q = True
-
-for h in range(3):
-    wybór[h+3] = int(alfabet.get(wybór[h+3]))
-    print(wybór[h+3])
-
-r = True
-while(r):
-    r = False
-    tekst = str(input("Podaj tekst do szyfrowania. Bez znaków polskich i cyfr. \n\n\n").lower())
-    for k in tekst:
-        if(k in "1234567890ąćęłńóśźż"):
-            print("Bez cyfr i polskich znaków")
-            r = True 
- 
-if(tekst == "start dev"):
-    devl()
-
-
-wynik = ""
-
-for l in range(len(tekst)):
-    r_0_in = (alfabet.get(tekst[l])+wybór[3])%26
-    print(r_0_in)
-    r_0_w = numery.get(rotor[wybór[0]][r_0_in])
-    print(r_0_w)
-    r_1_in = (alfabet.get(r_0_w) +wybór[4])%26
-    print(r_1_in)
-    r_1_w = numery.get(rotor[wybór[1]][r_1_in])
-    print(r_1_w)
-    r_2_in = (alfabet.get(r_1_w) +wybór[5])%26
-    print(r_2_in)
-    r_2_w = numery.get(rotor[wybór[2]][r_2_in])
-    print(r_2_w)
-    wynik += r_2_w
-    print(wynik)
-    if(wybór[3]==25):
-        wybór[3]=0
-        if(wybór[4]==25):
-            wybór[4]=0
-            if(wybór[5]==25):
-                wybór[5]=0
-            else:
-                wybór[5]+=1
+                wybór[4]+=1
         else:
-            wybór[4]+=1
-    else:
-        wybór[3]+=1
+            wybór[3]+=1
 
-for h in range(3):
-    print(wybór[h+3])
+    for h in range(3):
+        print(wybór[h+3])
 
-print(wynik)
+    print(wynik)
+
+    
+if(input("Wciśnij Enter aby zacząć...\n")=="devkod"):
+    verdev()
