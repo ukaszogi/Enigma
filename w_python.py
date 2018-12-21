@@ -113,8 +113,6 @@ def verdev():
                 print("Bez cyfr i polskich znaków")
                 r = True 
 
-    if(tekst == "start dev"):
-        devl()
 
 
     wynik = ""
