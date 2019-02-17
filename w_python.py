@@ -90,7 +90,7 @@ def verdev():
             j+=3
             p = True
             while(p):
-                wybór[j] = str(input("Podaj literę "+str(j-3)+". rotora: ").lower())
+                wybór[j] = str(input("Podaj literę "+str(j-2)+". rotora: ").lower())
                 if(len(wybór[j])==1):
                     p = False
                 else:
